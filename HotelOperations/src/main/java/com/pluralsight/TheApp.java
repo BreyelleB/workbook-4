@@ -7,7 +7,7 @@ public class TheApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Number of Beds");
+        System.out.println("Number of Beds you need");
         int beds = scanner.nextInt();
 
         System.out.println("What is the Price: ");
@@ -20,7 +20,27 @@ public class TheApp {
         boolean dirty = scanner.nextBoolean();
 
         Room room = new Room(beds, price, occupied, dirty);
-        System.out.println("Number of rooms Avaliable: " + room.isAvaliable());
+        System.out.println("Number of rooms Avaliable: " + room.isAvailable());
+
+        System.out.println("\nChecking guest in........");
+        if (room.checkIn()) {
+            System.out.println("Guest was chceked in successfully");
+        } else {
+            System.out.println("Room is not available for check-in.");
+        }
+
+        System.out.println("\nChecking guest out.......");
+        if (room.checkOut()) {
+            System.out.println("Guest checked out.");
+        }else {
+            System.out.println("Room was not occupied");
+        }
+        System.out.println("\nCleaning the room.........");
+        if (room.cleanRoom()) {
+            System.out.println("Room cleaned and reaady.");
+        }else {
+            System.out.println("Room cannot be cleaned right now");
+        }
 
         scanner.nextLine();
 
@@ -47,7 +67,7 @@ public class TheApp {
         System.out.println("Employee job title: ");
         String department = scanner.nextLine();
 
-        System.out.println("What is the 1Pay rate: ");
+        System.out.println("What is the Pay rate: ");
         double rate = scanner.nextDouble();
 
         System.out.println("How many Hours worked: ");
