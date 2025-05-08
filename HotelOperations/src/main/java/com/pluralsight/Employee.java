@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.time.LocalDateTime;
+
 public class Employee {
    private String employeeId;
    private String name;
@@ -45,7 +47,8 @@ public class Employee {
     }
 
     public double getPayRate() {
-        return payRate;
+
+       return payRate;
     }
 
     public void setPayRate(double payRate) {
@@ -74,6 +77,14 @@ public class Employee {
         double startTime = time;
         System.out.println(name + " punched in at " + time);
     }
+
+    //overloader using the current time
+    public void punchIn() {
+       LocalDateTime now = LocalDateTime.now();
+       double currentTime = now.getHour() + now.getMinute() / 60.0;
+       this.startTime = currentTime;
+        System.out.println(name + "Punched in at" + currentTime + " (current time)" );
+    }
     
     public void punchOut(double time) {
         if (time > startTime) {
@@ -84,4 +95,18 @@ public class Employee {
                 System.out.println("Invalid punch-out time.");
             }
             }
-        }
+
+    //overloader using current time
+  public void punchOut() {
+       LocalDateTime now = LocalDateTime.now();
+       double currentTime = now.getHour() + now.getMinute() / 60.0;
+       if (currentTime > startTime) {
+           double worked = currentTime - startTime;
+           hoursWorked += worked;
+           System.out.println(" Punched out at " + currentTime + " (worked " + worked + "hours) ");
+       } else {
+           System.out.println("Invalid punch-out time");
+       }
+
+  }
+}
